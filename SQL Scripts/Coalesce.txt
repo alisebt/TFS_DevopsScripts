@@ -1,0 +1,34 @@
+USE [MTNPayment]
+GO
+/****** Object:  StoredProcedure [dbo].[TBL_ChargingRequest_GetSearch]    Script Date: 01/06/1395 03:23:33 ب.ظ ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[TBL_ChargingRequest_GetSearch]
+	@ID BIGINT =NULL,
+	@ClientID BIGINT = NULL
+
+AS
+    BEGIN
+        SELECT  ID ,
+                Phone ,
+                Price ,
+                ClientID ,
+                CreateDate ,
+                Status ,
+                UpdateDate ,
+                MTNStatus ,
+                MTNErrorCode ,
+                MTNDescription
+        FROM    dbo.TBL_ChargingRequest
+        WHERE   ID = COALESCE(@ID, ID)
+                OR ClientID = COALESCE(@ClientID, ClientID)
+
+    END
+
